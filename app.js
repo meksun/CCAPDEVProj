@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const { requireAuth, checkUser } = require('./controllers/authMiddleware');
 const cookies = require("cookie-parser");
 dotenv.config();
+const port = process.env.PORT;
 const dbUri = process.env.SERVER_DB_URI;
 const options = {
    useUnifiedTopology: true,
@@ -39,7 +40,7 @@ app.use('*',checkUser);
 app.set('views', path.join(__dirname,'views/view'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,'public')));
-app.listen();
+app.listen(port);
 
 
 app.use('/Product', Product);
