@@ -48,5 +48,13 @@ function containsProduct(prod, list) {
 
 	
 })
+app.post('/', checkUser, async (req, res) => {
+    const userID = res.locals.user._id;
+    const {
+        title
+    }=req.body
+   console.log(title);
+    res.redirect('/cart');
+  });
 
 module.exports = app;

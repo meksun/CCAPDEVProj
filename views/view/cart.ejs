@@ -13,14 +13,19 @@
 		<th><label>Price Per Item</label></th>
 		<th><label>Total Item Price</label></th>
 	</tr>
-	<% items.forEach(item=>{ %>
+	<% var current = "";items.forEach(item=>{ 
+		current = item.title%>
 	<tr>
-		<td><a href = "/uploads/images/<%=item.slug%>"><img src="/uploads/images/<%=item.img%>"></a></td>
-		<td><%=item.title%></td>
-		<td>x<%=item.quantity%></td>
-		<td>$<%=item.price%></td>
-    <td>$<%=item.totalcost%></td>
-	<td><button id="removeItem">DELETE</button></td>
+		
+			<td><a href = "/uploads/images/<%=item.slug%>"><img src="/uploads/images/<%=item.img%>"></a></td>
+			<td id><%=item.title%></td>
+			<td>x<%=item.quantity%></td>
+			<td>$<%=item.price%></td>
+		<td>$<%=item.totalcost%></td>
+		<form id ="formdel">
+		<td><button id="removeItem" type = "submit">DELETE</button></td>
+			</form>
+		
 	</tr>
 	<%})%>
 

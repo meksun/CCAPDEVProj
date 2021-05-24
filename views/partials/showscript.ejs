@@ -8,7 +8,7 @@
                 const title = "<%=add.title%>"
 				console.log(title)
 
-				const result = await fetch('/Product/<%=add.slug%>', {
+				const result = await fetch('/Product/<%=add.slug%>/addtocart', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'

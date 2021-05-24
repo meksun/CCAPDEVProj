@@ -20,10 +20,7 @@
         <%  if(user){
             if(user.username === "admin"){%>
 
-                <a href="Product/edit/<%= Product.id %> " class="rounded-circle p-2 mb-2"
-                    style="background:white;">
-                    <i class="material-icons" style="color:black">drive_file_rename_outline</i>
-                </a>
+             
 
                 <div class="row mb-3" >
                 <a href="Product/new" class="btn btn-success d-flex align-items-center" ><i
@@ -58,7 +55,10 @@
                             <h5 class="w-100"><b> <%= Product.title %> </b></h5>
                             <%  if(user){
                                 if(user.username === "admin"){%>
-
+								   <a href="Product/edit/<%= Product.id %> " class="rounded-circle p-2 mb-2"
+													style="background:white;">
+													<i class="material-icons" style="color:black">drive_file_rename_outline</i>
+												</a>
                                     <form action="/Product/<%=Product.id%>?_method=DELETE" onclick="validateForm()"method="POST" id ="formdel">
                                         <button class="rounded-circle mb-1" style="background:white;">
                                             <i class="material-icons" style="color:black">X</i>

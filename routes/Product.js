@@ -48,7 +48,7 @@ router.get('/:slug', async (request, response) => {
     response.redirect('/');
   }
 });
-router.post('/:slug',checkUser, async (req, res) => {
+router.post('/:slug/addtocart',checkUser, async (req, res) => {
   
 
   const userID = res.locals.user._id;
