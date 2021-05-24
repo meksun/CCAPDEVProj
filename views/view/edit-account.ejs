@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<%- include('../partials/head.ejs')  %>
+
+<body>
+    <div id="functions">
+    	<a href="/cart">CART</a>
+    	<a href="/review">REVIEWS</a>
+      
+    </div>
+    
+    <center>
+        <div class="accountdetails">
+            <form id="editaccform" name='EditAcc' action="">
+            <input type="text" id = "fname" name = "fname"placeholder="First Name">
+            <input type="text" id = "mname" name = "mname" placeholder="Middle Name">
+            <input type="text" id = "lname" name = "lname" placeholder="Middle Name">
+            <input type="password" id = "password" name = "password" placeholder="Password">
+            <input type="text" id = "address" name = "address" placeholder="Address">
+            <input type="email" id = "emailaddress" name = "emialaddress" placeholder="Email Address">
+            
+                <button id="delete" onclick="deleteAcc()">DELETE ACCOUNT</button>
+			<br>
+            <button id="cancel" onclick="goBack()">CANCEL</button>
+            <button type="submit" id = "submitchanges">DONE</button>
+        </form>
+        </div>
+    </center><br><br><br><br><br><br><br><br><br><br><br><br>
+    <%- include('../partials/edit-account.ejs') %>
+    <%- include('../partials/footer.ejs')  %>
+	<%- include('../partials/nav.ejs')  %>
+</body>
+
+</html>

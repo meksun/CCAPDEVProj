@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<%- include('../partials/head.ejs')  %>
+	<%- include('../partials/account-details.ejs')  %>
+<body>
+	<div id="functions"> <a href="/cart">CART</a> <a href="/review">REVIEWS</a> </div>
+	<div id="accountdetails">
+		<div id = "data">
+			<h3>Username | <%=user.username%></h3>
+			<h3>Name | <%=user.fname%> <%=user.mname%> <%=user.lname%></h3>
+			<h3>Password | *******</h3>
+			<h3>Address | <%=user.address%></h3>
+			<h3>Email Address | <%=user.emailaddress%></h3>
+			<br>
+
+					<br>
+					
+					<table>
+						<tr><h2>Previously Purchased Items</h2></tr>
+						<tr>
+							<th><label>Picture of Product</label></th>
+							<th><label>Item Name</label></th>
+							<th><label>Quantity</label></th>
+							<th><label>Price Per Item</label></th>
+							<th><label>Total Item Price</label></th>
+						</tr>
+						<% items.forEach(item=>{ %>
+						<tr>
+							<td><a href = "/uploads/images/<%=item.slug%>"><img src="/uploads/images/<%=item.img%>"></a></td>
+							<td><%=item.title%></td>
+							<td>x<%=item.quantity%></td>
+							<td>$<%=item.price%></td>
+						<td>$<%=item.totalcost%></td>
+						</tr>
+						<%})%>
+					
+						<tr><h4 id = "total">TOTAL :$<%=total%></h4></tr>
+					</table>
+					
+				
+			</div>
+			
+			
+			
+
+			
+		</div>
+		
+
+	</div>
+	<%- include('../partials/footer.ejs')  %>
+	<%- include('../partials/nav.ejs')  %>
+</body>
+</html>

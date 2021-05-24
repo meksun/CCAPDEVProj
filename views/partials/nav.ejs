@@ -1,0 +1,151 @@
+<span id = "openside" onmouseover ="openNav()">NAVIGATE</span>
+<div id = "sidebar-functions" onmouseleave="closeNav()">
+	
+	<nav>
+		
+
+				<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About us</a></li>
+				<li><a href="/cart">Cart</a></li>
+				<li><a href="/products">Products</a></li>
+				<% if (user){%>
+				<li><a href="/account-details">My Account</a></li>
+				<li><a href="/edit-account">Edit Account</a></li>
+				<%}%>
+				</ul>
+				<br><br>
+				<div id = "login">
+					<% if (user){%>
+						<p>Welcome, <%=user.username%></p>
+						<p><a href="/logout">Log Out</a></p>
+						<% }else{%>
+					<p><a href="/login">Log In</a></p>
+					<p><a href="/register">Register</a></p>
+					<%}%>
+					
+				</div>
+			</nav>
+    <style>
+        
+nav{
+	margin-left: auto;
+	margin-right: auto;
+	flex:1;
+}
+#sidebar-functions a{
+	text-decoration: none;
+	color:black;
+
+}
+#login{
+	display: flex;
+	flex-direction: row;
+	font-size: 15px;
+	margin: auto;
+}
+#login p{
+	margin: auto;
+}
+
+nav ul li{
+	display: flex;
+	flex-direction: column;
+	margin:0px 20px ;
+}
+nav ul li a{
+	text-decoration: none;
+
+	font-size: 20px;
+	color: black;
+	margin: 10px;
+}
+
+#sidebar-functions a:hover {
+  color: green;
+}
+#sidebar-functions{
+
+ height: 100%; 
+  width: 0; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg,rgb(125, 214, 103),rgb(143, 156, 211)); 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s;
+border: 6px solid black;
+}
+#openside{
+	position: fixed;
+	background-color: black;
+	color: white;
+	writing-mode: vertical-rl;
+	text-orientation: upright;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	left: 0;
+	top: 0px;
+	width: 50px;
+	height: 100%;
+}
+
+#searchbox{
+  width: 400px; 
+  position: fixed; 
+  top: 45px;
+  left: 0;
+  background: linear-gradient(45deg,rgb(125, 214, 103),#494D5F); 
+  visibility: hidden;
+  overflow-x: hidden; 
+  display: flex;
+  flex-direction: row;
+ border: 3px solid black;
+}
+
+#searchbox form{
+width: 300px;
+height: 30px;
+border: none;
+margin: auto;
+display: flex;
+flex-direction: row;
+}
+#searchbox form input{
+	margin: auto;
+}
+#searchbox form input[type=text]{
+	height: 10px;
+  width: 300px;
+}
+    </style>
+
+<script>
+
+
+
+
+function openNav() {
+  document.getElementById("sidebar-functions").style.width = "200px";
+}
+
+function closeNav() {
+  document.getElementById("sidebar-functions").style.width = "0";
+}
+function searchBoxShow(){
+
+	document.getElementById("searchbox").style.visibility = "visible";
+
+}
+
+function searchBoxHide(){
+
+	document.getElementById("searchbox").style.visibility = "hidden";
+
+
+}
+</script>

@@ -1,0 +1,121 @@
+<style>
+
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  background: linear-gradient(45deg,#c6c6c6,#BBFFEE);
+  color: rgb(8, 8, 8);
+  font-family: serif;
+}
+#checkout {
+  box-sizing: border-box;
+  border: 2px solid black;
+  box-shadow: -3px -3px 7px #ffffff73,
+      3px 3px 5px rgba(94, 104, 121, 0.288);
+  border-radius: 5px;
+  background-color: rgb(133, 255, 153);
+  margin: auto;
+  margin-top: 50px;
+  
+  width: 360px;
+  height:500px;
+  
+}
+
+#payment{
+    display: block;
+    margin: 0 auto;
+    width: 220px;
+    height: 32px;
+}
+
+
+#checkoutform label {
+  box-sizing: border-box;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  padding: 2px 15px;
+  border-radius: 5px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  
+
+}
+
+#checkout form input[type=text]{
+  display: block;
+  box-sizing: border-box;
+  background: none;
+  color: black;
+  margin-bottom: 30px;
+  padding: 4px;
+  width: 220px;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-family: 'Roboto'sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  border-bottom: 2px solid black;
+  border-bottom-right-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+::placeholder {
+  color: black;
+  opacity: 0.5;
+}
+
+#checkoutform {
+  text-align: center;
+}
+
+#submitcheckout{
+  
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  padding: 2px 15px;
+  border-radius: 5px;
+ 
+ 
+}
+
+#submitcheckout:hover{
+   background-color: #BBFFEE;
+    color: black;
+    transition: 0.5s;
+}
+</style>
+<script>
+
+const form = document.getElementById('checkoutform')
+			form.addEventListener('submit', checkout)
+
+			async function checkout(event) {
+				event.preventDefault()
+                
+
+				const result = await fetch('/checkout', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				}).then((res) => res.json())
+
+				if (result.status === 'ok') {
+					// everythign went fine
+					
+          window.location.href = "/checkoutsuccess"
+				} else {
+					alert(result.error)
+				}
+			}
+</script>

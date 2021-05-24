@@ -1,0 +1,117 @@
+
+   <style>
+
+    #error {
+        height: 15px;
+    }
+    
+    #error:empty {
+        height: 15px;
+    }
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  background: linear-gradient(45deg,#c6c6c6,#BBFFEE);
+  color: rgb(8, 8, 8);
+  font-family: serif;
+}
+
+
+
+input[type="file"],#submitregister {
+  display: none;
+}
+
+#registration form input[type=text],#registration form input[type=password],#registration form input[type=email]{
+  display: block;
+  box-sizing: border-box;
+  background: none;
+  color: black;
+  margin-bottom: 30px;
+  padding: 4px;
+  width: 220px;
+  height: 32px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-family: 'Roboto'sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  border-bottom: 2px solid black;
+  border-bottom-right-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#registration{
+	border: 3px solid black;
+	text-align: center;
+	background-color: rgba(103, 216, 137, 0.938);
+	width: 300px;
+	height: 800px;
+  margin: auto;
+}
+
+#registration label {
+  box-sizing: border-box;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  padding: 2px 15px;
+  border-radius: 5px;
+}
+
+#registration label:hover {
+  background-color: #BBFFEE;
+  color: black;
+  transition: 0.5s;
+}
+   </style>
+   <script>
+   const form = document.getElementById('registrationform')
+			form.addEventListener('submit', registerUser)
+
+			async function registerUser(event) {
+				event.preventDefault()
+				const username = document.getElementById('uname').value
+				const password = document.getElementById('password').value
+				const fname = document.getElementById('fname').value
+
+				const mname = document.getElementById('mname').value
+				const lname = document.getElementById('lname').value
+				const address = document.getElementById('address').value
+				const emailaddress = document.getElementById('emailaddress').value
+
+				const inCart = [];
+				const itemsBought = [];
+				const result = await fetch('/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						username, 
+						fname,
+						mname,
+						lname,
+						password,
+						address,
+						emailaddress,
+						inCart,
+						itemsBought,
+
+					})
+				}).then((res) => res.json())
+
+				if (result.status === 'ok') {
+          swal("Registration Successful!", "Redirecting to home page...", "success");
+          setTimeout(function(){ window.location.href = "/"; },700); 
+
+				} else {
+					swal(result.error);
+				}
+			}
+
+</script>
