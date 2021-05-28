@@ -1,0 +1,188 @@
+<%  if(user)if(user.username != "admin"){%>
+  <form id="reviewform" name='reviewform'>
+      <br>
+      <br>
+      
+     
+      <label for="reviewinput" id = "reviewinputlabel">ADD REVIEW</label>
+      <br>
+          <input type="text" id = "reviewinput" >
+          <br>
+          <input type = "submit" id = "submitreview" name="submitreview"/>
+              <label for="submitreview"  id = "submitlabel" >SUBMIT</label>
+              <% ratings.forEach(rating=>{ if(rating.user === user.username){%>
+                <strong>Only 1 Review per customer,<br> previous review will be replaced if a new one is placed</strong>
+          
+                <input type = "button" id = "deletereview" name="deletereview"/>
+                <label for="deletereview" id = "deletelabel">DELETE</label>
+                <%}})%>
+             
+          </form>
+          <h3  id = "ratinglabel">ADD RATING</h3>
+          <br>
+          <form class="rating">
+              <label>
+                <input type="radio" id = "star1" name="stars" value="1" />
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio"  id = "star2" name="stars" value="2" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" id = "star3" name="stars" value="3" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>   
+              </label>
+              <label>
+                <input type="radio" id = "star4" name="stars" value="4" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" id = "star5" name="stars" value="5" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+            </form>
+            <% } %>
+  
+            <br><br><br><br>
+  
+            <div class="comment">
+              <h1>Reviews</h1><br>
+              </div>
+              <% ratings.forEach(rating=>{%>
+              <div class="comment">
+                <hr style="width:100%", size="3", color=black> 
+                <p><strong>Username</strong> : <%=rating.user%></p>
+                <p><strong>Rating</strong> : <%=rating.stars%>/5</p>
+                <p><strong>Comment</strong> : <%=rating.comment%></p><br>
+                <%})%>
+                </div>
+  
+            <style>
+    
+  
+  #submitlabel,#deletelabel {
+    box-sizing: border-box;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding: 2px 15px;
+    border-radius: 5px;
+    width: 90px;
+    }
+    
+    #submitlabel:hover,#deletelabel:hover, button:hover{
+    background-color: #BBFFEE;
+    color: black;
+    transition: 0.5s;
+    }
+    #submitreview, #deletereview{
+    display: none;
+    }
+    #reviewinput{
+      width: 500px;
+      height: 90px;
+    }
+    #reviewinputlabel,#ratinglabel{
+    box-sizing: border-box;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding: 2px 15px;
+    border-radius: 30px;
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    }
+    #reviewform{
+      display: flex;
+      flex-direction: column;
+      margin: 30px;
+      padding: 30px;
+      align-items: center;
+    }
+    #deletereview{
+      align-items: center;
+    }
+  
+    .rating {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+      margin: auto;
+    line-height: 50px;
+    font-size: 40px;
+  
+    }
+    
+    .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+    }
+    
+    .rating label:last-child {
+    position: static;
+    }
+    
+    .rating label:nth-child(1) {
+    z-index: 5;
+    }
+    
+    .rating label:nth-child(2) {
+    z-index: 4;
+    }
+    
+    .rating label:nth-child(3) {
+    z-index: 3;
+    }
+    
+    .rating label:nth-child(4) {
+    z-index: 2;
+    }
+    
+    .rating label:nth-child(5) {
+    z-index: 1;
+    }
+    
+    .rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    }
+    
+    .rating label .icon {
+    color: transparent;
+    }
+    
+    .rating label:last-child .icon {
+    color: #000;
+    }
+    
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+    color: rgb(204, 0, 255);
+    }
+    
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px #09f;
+    }
+            </style>
+  
+  

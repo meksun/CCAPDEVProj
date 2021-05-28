@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title><%= add.title %> </title>
+</head>
+
+<body>
+    <div class="container p-5">
+        <div class="card shadow-lg rounded p-3">
+            <div class="row">
+                <div class="col-2">
+                    
+                    <a href="/Product" class="rounded-pill shadow p-2 d-flex align-items-center justify-content-center"
+                        style="text-decoration:none;">
+                        <i class="material-icons mr-2" style="color:black">arrow_left
+                        </i> <span class="" style="color:black">Back</span>
+                    </a>
+                </div>
+                <div class="col-8">
+                    <h1 id = "title"> <%= add.title %> </h1>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="col-12 card-img">
+                    <img src="/uploads/images/<%= add.img %>" class="card-img" alt="...">
+
+                </div>
+            </div>
+          <br>
+          <pre>
+            <p class="card-text"> <%- add.description %>
+            </pre>
+            <pre>
+                <p class="card-text"><strong>Price </strong>: $<%- add.price %>
+                </pre>
+            <%  if(user)if(user.username != "admin"){%>
+                <form id = "addtocart">
+                    <button type="submit">Add To Cart</button>
+                </form>
+                <%  } %>
+            <%- include('../partials/make-review-rating.ejs')%>
+            <%-include ('../partials/make-review-rating-script.ejs')%>
+        </div>
+
+        <%- include('../partials/showscript.ejs')  %>
+        <%- include('../partials/footer.ejs')  %>
+        <%- include('../partials/nav.ejs')  %> 
+    </div>
+
+</body>
+<style>
+    button{
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    margin: 0px;
+    right: 5px;
+    bottom: 5px;
+}
+
+</style>
+
+</html>

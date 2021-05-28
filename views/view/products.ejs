@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/index.ejs')  %>
+    <%- include('../partials/head.ejs')  %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title></title>
+
+</head>
+
+<body>
+    <div class="container" style="padding:2%;">
+       
+        
+        <%  if(user){
+            if(user.username === "admin"){%>
+
+        <div class="row mb-3" >
+            <a href="Product/new" class="btn btn-success d-flex align-items-center" ><i
+                    class="material-icons mr-2">add_circle</i>
+                Add New Product</a>
+        </div>
+    <%  }} %>
+        <div class="row">
+
+            <% if(Product.length<1){%>
+
+            <p class="text-white">No Products yet</p>
+
+            <%  } %>
+
+
+            <% Product.forEach(Product=>{ %>
+
+
+            <div class="col-lg-55 card mt-2 mr-0">
+                <div class="row p-2">
+                    
+                    <div class="col-5 overflow-hidden">
+                        <img src="/uploads/images/<%= Product.img %>" class="card-img" alt="...">
+
+                    </div>
+
+                    <div class="col-7">
+                        <div class="d-flex align-items-start">
+                            <h5 class="w-100"><b> <%= Product.title %> </b></h5>
+
+                          
+                            <div class="more position-relative" style="cursor: pointer;">
+
+                                <%  if(user){
+                                    if(user.username === "admin"){%>
+                                <i class="material-icons p-2">more_vert</i>
+                       
+                                <div class="d-none options card rounded-pill position-absolute ">
+
+                                    <a href="Product/edit/<%= Product.id %> " class="rounded-circle p-2 mb-2"
+                                        style="background:white;">
+                                        <i class="material-icons" style="color:black">drive_file_rename_outline</i>
+                                    </a>
+                                    <form action="/Product/<%=Product.id%>?_method=DELETE" onclick="validateForm()"method="POST" id ="formdel">
+                                        <button class="rounded-circle mb-1 p-2" style="background:white;">
+                                            <i class="material-icons" style="color:black">X</i>
+
+                                        </button>
+                                    </form>
+                                   
+                                </div>
+                                <%  }} %>
+                            </div>
+                        </div>
+
+                        <span class="align-self-stretch "><%= Product.snippet %>
+
+                        </span>
+                        <div class="d-flex align-items-end">
+                            
+                            <br> <br>
+                            <a href="Product/<%=Product.slug %> " class=" align-self-end" style="bottom:50px;">
+                                View Specs<i class='material-icons ml-3 text-black'>pageview</i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <% }) %>
+
+
+
+
+        </div>
+    
+
+</body>
+<%- include('../partials/footer.ejs')  %>
+<%- include('../partials/nav.ejs')  %>
+</html>
+<script>
+
+    
+function validateForm() {
+      event.preventDefault(); // prevent form submit
+      var form = document.forms["myForm"]; // storing the form
+      swal({
+             title: "Are you sure you want to delete this product?",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+          .then((willDelete) => {
+               if (willDelete) {
+                document.getElementById("formdel").submit();
+               } 
+        });
+}
+
+
+    const moreButton = document.querySelectorAll('.more');
+
+for (let i = 0; i < moreButton.length; i++) {
+  moreButton[i].addEventListener('click', () => {
+    moreButton[i].children[1].classList.toggle('d-none');
+  });
+}
+</script>
+<style>
+    body{
+        background: linear-gradient(45deg,#c6c6c6,#BBFFEE) !important;
+    }
+    
+    </style>
