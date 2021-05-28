@@ -101,9 +101,28 @@ const form = document.getElementById('checkoutform')
 
 			async function checkout(event) {
 				event.preventDefault()
-                
+        var todayDate = new Date();
+          var dd = todayDate.getDate();
 
-				const result = await fetch('/checkout', {
+          var mm = todayDate.getMonth()+1; 
+          var yyyy = todayDate.getFullYear();
+          if(dd<10) 
+          {
+              dd='0'+dd;
+          } 
+
+          if(mm<10) 
+          {
+              mm='0'+mm;
+          } 
+          todayDate = yyyy+'-'+mm+'-'+dd;
+         
+        var expDate = document.getElementById("expdate").value
+        
+        if (todayDate >= expDate) {    
+                alert("Your Card has Expired, Plese use a different card");    
+            }else {    
+              const result = await fetch('/checkout', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -118,4 +137,9 @@ const form = document.getElementById('checkoutform')
 					alert(result.error)
 				}
 			}
+				} 
+                      
+
+				
+			
 </script>

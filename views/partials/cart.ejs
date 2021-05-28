@@ -97,27 +97,3 @@ table
 	color: black;
 }
 </style>
-<script>
-	function validateForm() {
-     
-				   const item = "<%=current%>"
-				const result = await fetch('/cart', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-                       item,
-					})
-				}).then((res) => res.json())
-
-				if (result.status === 'ok') {
-					// everythign went fine
-					alert('Success')
-                    
-				} else {
-					alert(result.error)
-				
-				}
-		}
-</script>

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
+const path = require('path')
 const bcrypt = require('bcryptjs')
 
 const User = require('../models/users.js');
@@ -20,35 +21,11 @@ app.post('/',async (req, res) => {
 		itemsBought,
 	} = req.body
 
-	if (!username || typeof username !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' })
-	}
-	if (!fname || typeof fname !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' })
-	}
-	if (!mname || typeof mname !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' })
-	}
+	
 
-	if (!lname || typeof lname !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' })
-	}
-
-	if (!address || typeof address !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' })
-	}
-
-	if (!emailaddress || typeof emailaddress !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid username' })
-	}
-
-
-
-
-
-	if (!plainTextPassword || typeof plainTextPassword !== 'string') {
-		return res.json({ status: 'error', error: 'Invalid password' })
-	}
+	if(await User.findOne({username:username}))
+	return res.json({ status: 'error', error: "User Name taken" })
+	
 
 	if (plainTextPassword.length < 5) {
 		return res.json({
@@ -75,7 +52,7 @@ app.post('/',async (req, res) => {
 	} catch (error) {
 		if (error.code === 11000) {
 			// duplicate key
-			return res.json({ status: 'error', error: 'Username already in use' })
+			return res.json({ status: 'error', error: 'Duplicate Key' })
 		}
 		throw error
 	}

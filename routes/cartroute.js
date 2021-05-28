@@ -1,9 +1,11 @@
 const express = require('express');
-const app = express();
+const router = express.Router();
 const bodyParser = require('body-parser')
 const product = require("../models/addProductModel")
-app.use(bodyParser.json())
+router.use(bodyParser.json())
 const { checkUser } = require('../controllers/authMiddleware');
+
+const User = require('../models/users.js')
 
 
 function containsProduct(prod, list) {
@@ -16,13 +18,28 @@ function containsProduct(prod, list) {
 
     return 0;
 }
- app.get('/',checkUser,async (req, res) => {
+router.get('/:slug/delete',checkUser, async (request, response) => {
+  console.log(request.params.slug)
+  let prod = await product.findOne({ slug: request.params.slug });
+  let user = response.locals.user;
+
+  await User.updateOne({username:user.username},{$pull: { 'inCart': prod.title }
+  })
+  response.redirect("/cart")
+  
+	 
+
+});
+ router.get('/',checkUser,async (req, res) => {
     const cart = res.locals.user.inCart;
     var combinedcost = 0;
+    let user = res.locals.user;
     const cartItems = []
     for(i = 0; i < cart.length;i++)
     {
       let item = await product.findOne({title:cart[i]})
+      if(item)
+      {
 
       if(containsProduct(item.title,cartItems))
       {
@@ -35,20 +52,26 @@ function containsProduct(prod, list) {
           price:item.price,
           img:item.img,
           quantity:1,
+          slug:item.slug,
           totalcost:item.price
-      })}
+      })}}
+      else
+      {
+        await User.updateOne({username:user.username},{$pull: { 'inCart': cart[i] }
+      })
+    }
       
     }
     for(i = 0; i < cartItems.length;i++)
     {
        combinedcost += cartItems[i].totalcost
     }
-    res.render('view/cart',{items:cartItems, total:combinedcost});
+    res.render('cart',{items:cartItems, total:combinedcost});
 	 
 
 	
 })
-app.post('/', checkUser, async (req, res) => {
+router.post('/', checkUser, async (req, res) => {
     const userID = res.locals.user._id;
     const {
         title
@@ -57,4 +80,4 @@ app.post('/', checkUser, async (req, res) => {
     res.redirect('/cart');
   });
 
-module.exports = app;
+module.exports = router;

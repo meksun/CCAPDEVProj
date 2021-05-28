@@ -2,14 +2,22 @@
 <div id = "sidebar-functions" onmouseleave="closeNav()">
 	
 	<nav>
-		
+		<a onclick="searchBoxShow()">Search</a>
+		<div id = "searchbox">
+			<a onclick="searchBoxHide()" id = "searchhide">◁</a>
+			<form id = "searchform">
+				<input type="text" id = "queryinput">
+				<input type="submit" name="searchsubmit" id = "search" value = "Search">
+			</form>
+		</div>
 
 				<ul>
 				<li><a href="/">Home</a></li>
 				<li><a href="/about">About us</a></li>
-				<li><a href="/cart">Cart</a></li>
-				<li><a href="/products">Products</a></li>
+			
+				<li><a href="/Product">Products</a></li>
 				<% if (user){%>
+				<li><a href="/cart">Cart</a></li>
 				<li><a href="/account-details">My Account</a></li>
 				<li><a href="/edit-account">Edit Account</a></li>
 				<%}%>
@@ -28,7 +36,8 @@
 			</nav>
     <style>
         
-nav{
+
+		nav{
 	margin-left: auto;
 	margin-right: auto;
 	flex:1;
@@ -62,7 +71,7 @@ nav ul li a{
 }
 
 #sidebar-functions a:hover {
-  color: green;
+  color: yellow;
 }
 #sidebar-functions{
 
@@ -119,15 +128,47 @@ flex-direction: row;
 	margin: auto;
 }
 #searchbox form input[type=text]{
-	height: 10px;
-  width: 300px;
+	display: block;
+    box-sizing: border-box;
+    background: none;
+    color: black;
+    margin-bottom: 30px;
+    padding: 4px;
+    width: 220px;
+    height: 28px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: 'Roboto'sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+	border-bottom: 2px solid black;
+    border-bottom-right-radius: 20px;
+    color: black;
 }
+
+#search{
+	box-sizing: border-box;
+	font-size: 15px;
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+	padding: 2px 15px;
+	border-radius: 30px;
+	width: 200px;
+	text-align: center;
+	margin: auto;
+}
+
+#search:hover{
+	background-color: #BBFFEE;
+	color: black;
+	transition: 0.5s;
+}
+
+
     </style>
 
 <script>
-
-
-
 
 function openNav() {
   document.getElementById("sidebar-functions").style.width = "200px";
@@ -148,4 +189,7 @@ function searchBoxHide(){
 
 
 }
+
+
+				
 </script>

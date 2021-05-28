@@ -35,6 +35,7 @@ function containsProduct(prod, list) {
           price:item.price,
           img:item.img,
           quantity:1,
+          slug:item.slug,
           totalcost:item.price
       })}
       

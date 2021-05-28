@@ -6,6 +6,7 @@
 <body>
 	<div id="functions"> <a href="/cart">CART</a> <a href="/review">REVIEWS</a> </div>
 	<div id="accountdetails">
+		<img class="profilepic" src="/images/pfp.jpg" alt="profilepic">
 		<div id = "data">
 			<h3>Username | <%=user.username%></h3>
 			<h3>Name | <%=user.fname%> <%=user.mname%> <%=user.lname%></h3>
@@ -27,7 +28,7 @@
 						</tr>
 						<% items.forEach(item=>{ %>
 						<tr>
-							<td><a href = "/uploads/images/<%=item.slug%>"><img src="/uploads/images/<%=item.img%>"></a></td>
+							<td><a href = "/Product/<%=item.slug%>"><img src="/uploads/images/<%=item.img%>"></a></td>
 							<td><%=item.title%></td>
 							<td>x<%=item.quantity%></td>
 							<td>$<%=item.price%></td>

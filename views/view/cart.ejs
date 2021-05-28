@@ -13,18 +13,17 @@
 		<th><label>Price Per Item</label></th>
 		<th><label>Total Item Price</label></th>
 	</tr>
-	<% var current = "";items.forEach(item=>{ 
-		current = item.title%>
+	<% if(items)items.forEach(item=>{%>
 	<tr>
 		
-			<td><a href = "/uploads/images/<%=item.slug%>"><img src="/uploads/images/<%=item.img%>"></a></td>
+			<td><a href = "/Product/<%=item.slug%>"><img src="/uploads/images/<%=item.img%>"></a></td>
 			<td id><%=item.title%></td>
 			<td>x<%=item.quantity%></td>
 			<td>$<%=item.price%></td>
 		<td>$<%=item.totalcost%></td>
-		<form id ="formdel">
-		<td><button id="removeItem" type = "submit">DELETE</button></td>
-			</form>
+		
+		<td><button> <a href = "cart/<%=item.slug%>/delete"> DELETE</a></button></td>
+			
 		
 	</tr>
 	<%})%>
@@ -36,7 +35,7 @@
 <br>
 <br>
 <button id ="back"><a href="javascript:history.back()">BACK</a></button>
-<button id="addItem"><a href="/products">ADD ITEM</a></button>
+<button id="addItem"><a href="/Product">ADD ITEM</a></button>
 <button id="checkout"><a href = "/checkout">CHECKOUT</a></button>
 </div><br><br><br><br><br><br><br><br>
 <%- include('../partials/footer.ejs')  %>

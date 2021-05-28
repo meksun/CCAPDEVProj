@@ -23,7 +23,7 @@ const accountdetaills = require("./routes/accountdetailsroute")
 const Product = require('./routes/Product.js');
 const addRouter = require('./routes/Product.js');
 const addProduct = require('./models/addProductModel');
-const store = require('./routes/storeroute');
+const review = require("./routes/reviewroutes.js")
 const cart = require("./routes/cartroute")
 const checkout = require("./routes/checkoutroute")
 const app = express();
@@ -67,17 +67,15 @@ app.use('/Product', addRouter);
 app.use("/cart",cart);
 app.use("/checkout",checkout);
 app.use('/account-details',accountdetaills);
-// app.get('/products', product_ctrl.displayAllProducts);
+app.use('/review',review);
+
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 //route for the index
 
-app.get('/products', async (request, response) => {
-  let Product = await addProduct.find().sort({ timeCreated: 'desc' });
-  response.render('products', { Product: Product });
-});
+
 
 app.use(express.static('public'));
 app.use('/Product', addRouter);
@@ -85,9 +83,7 @@ app.use('/Product', addRouter);
 
 
 
-app.get('/review',(req,res)=>{
-   res.render('review',{title:'Review'});
-});
+
 app.get('/checkoutsuccess',(req,res)=>{
    res.render('checkoutsuccess',{title:'Checkout Success'});
 });

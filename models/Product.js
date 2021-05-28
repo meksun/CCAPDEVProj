@@ -39,29 +39,12 @@ router.get('/:slug', async (request, response) => {
   if (add) {
     response.render('show', { add: add });
   } else {
-    response.redirect('/');
+    response.redirect('/Product');
   }
 });
 
 //route that handles new post
-router.post('/', upload.single('image'), async (request, response) => {
-  console.log(request.file);
-  let add = new Add({
-    title: request.body.title,
-    price: request.body.price,
-    tag:request.body.tag,
-    description: request.body.description,
-    img: request.file.filename,
-  });
 
-  try {
-    add = await add.save();
-
-    response.redirect(`Product/${add.slug}`);
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 
 //route to handle updates
@@ -86,7 +69,7 @@ router.put('/:id', async (request, response) => {
 ///route to handle delete
 router.delete('/:id', async (request, response) => {
   await Add.findByIdAndDelete(request.params.id);
-  response.redirect('/products');
+  response.redirect('/Product');
 });
 
 router.post('/addToCart',checkUser,async (req, res) => {

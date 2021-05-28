@@ -15,41 +15,16 @@
 <h1>Reviews</h1><br>
 <hr style="width:100%", size="3", color=black> 
 </div>
+<% reviews.forEach(review=>{%>
 <div class="comment">
-<strong><a href = "laptop1.html">Asus ROG GL551</a></strong>
-<p>Name:Joe, M.</p>
-<p>Date of Purchase:03-11-2021</p>
-<p>Rating: 4/5</p>
-<p>Comment: I love this product and seller is nice.</p><br>
+<strong><a href = "/Product/<%=review.product%>/"><%=review.title%></a></strong>
+<p>Name: <%= review.user%> </p>
+<p>Rating: <%= review.stars%>/5</p>
+<p>Comment: <%= review.comment%></p><br>
 
-<button>EDIT</button>
+<%})%>
 </div>
-<div class="comment">
-	<strong><a href = "laptop2.html">Asus ROG GL551</a></strong>
-<p>Name:Joe, M.</p>
-<p>Date of Purchase:03-11-2021</p>
-<p>Rating: 4/5</p>
-<p>Comment: I love this product and seller is nice.</p><br>
 
-<button>EDIT</button>
-</div>
-<div class="comment">
-	<strong><a href = "laptop3.html">Asus ROG GL551</a></strong>
-<p>Name:Joe, M.</p>
-<p>Date of Purchase:03-05-2021</p>
-<p>Rating: 5/5</p>
-<p>Comment: Nice.</p><br>
-
-<button>EDIT</button>
-</div>
-<div class="comment">
-	<strong><a href = "laptop4.html">Asus ROG GL551</a></strong>
-<p>Name:Joe, M.</p>
-<p>Date of Purchase:04-11-2021</p>
-<p>Rating: 4/5</p>
-<p>Comment: I love this product</p><br>
-
-<button>EDIT</button>
 </div>
 </div>
 

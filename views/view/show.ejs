@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-2">
                     
-                    <a href="/products" class="rounded-pill shadow p-2 d-flex align-items-center justify-content-center"
+                    <a href="/Product" class="rounded-pill shadow p-2 d-flex align-items-center justify-content-center"
                         style="text-decoration:none;">
                         <i class="material-icons mr-2" style="color:black">arrow_left
                         </i> <span class="" style="color:black">Back</span>
@@ -42,13 +42,15 @@
             <p class="card-text"> <%- add.description %>
             </pre>
             <pre>
-                <p class="card-text">Price : $<%- add.price %>
+                <p class="card-text"><strong>Price </strong>: $<%- add.price %>
                 </pre>
             <%  if(user)if(user.username != "admin"){%>
                 <form id = "addtocart">
                     <button type="submit">Add To Cart</button>
                 </form>
                 <%  } %>
+            <%- include('../partials/make-review-rating.ejs')%>
+            <%-include ('../partials/make-review-rating-script.ejs')%>
         </div>
 
         <%- include('../partials/showscript.ejs')  %>

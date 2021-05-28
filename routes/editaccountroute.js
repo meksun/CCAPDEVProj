@@ -4,10 +4,10 @@ const app = express();
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 const bcrypt = require('bcryptjs')
-const control = require("../controllers/user_ctrl");
+
 const { checkUser } = require('../controllers/authMiddleware');
 const User = require('../models/users');
-
+const Review = require('../models/RatingModel');
 
 
 app.get('/',(req,res)=>{
@@ -80,7 +80,10 @@ app.post('/deleteAcc',async(req,res)=>{
 	const { 
 		userID
 	} = req.body
-console.log(userID)
+	var user = await User.findOne({_id:userID})
+	var name = user.username
+	await Review.deleteMany({user:name})
+
 	await User.deleteOne({_id:userID})
  });
 
